@@ -1,0 +1,8 @@
+2026-01-26 15:17:26,476 - __main__ - INFO - Loaded data from data/sample_data.csv, shape: (1010, 8)
+2026-01-26 15:17:26,478 - __main__ - INFO - Successfully loaded 1010 rows and 8 columns
+2026-01-26 15:17:26,528 - __main__ - INFO - Profiled data: 1010 records, 8 columns
+2026-01-26 15:18:09,552 - __main__ - INFO - Loaded data from data/sample_data.csv, shape: (1010, 8)
+2026-01-26 15:18:09,554 - __main__ - INFO - Successfully loaded 1010 rows and 8 columns
+2026-01-26 15:18:09,729 - __main__ - INFO - Profiled data: 1010 records, 8 columns
+2026-01-26 17:05:59,732 - INFO - ACTION: DATA_LOADED | DETAILS: {"rows": 8, "cols": 4}
+2026-01-26 17:06:00,876 - INFO - ACTION: DATA_CLEANED | DETAILS: {"missing_filled": 3, "duplicates_removed": 0, "outliers_capped": 0}

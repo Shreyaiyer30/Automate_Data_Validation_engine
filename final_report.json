@@ -1,0 +1,29 @@
+{
+    "timestamp": "2026-01-26T17:06:01.030249",
+    "summary": {
+        "total_missing_before": 3,
+        "total_duplicates_before": 0,
+        "total_outliers_detected": 0,
+        "total_corrections_made": 3
+    },
+    "validation_details": {
+        "missing_values": {
+            "age": 1,
+            "income": 1,
+            "email": 1,
+            "joining_date": 0
+        },
+        "duplicate_rows": 0,
+        "schema_errors": [],
+        "type_mismatches": {
+            "age": "Expected int64, but data contains non-conforming values.",
+            "joining_date": "Expected datetime64[ns], but data contains non-conforming values."
+        }
+    },
+    "correction_details": {
+        "missing_filled": 3,
+        "duplicates_removed": 0,
+        "outliers_capped": 0
+    },
+    "outlier_details": {}
+}

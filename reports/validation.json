@@ -1,0 +1,68 @@
+{
+  "timestamp": "2026-01-26T15:18:09.758628",
+  "summary": {
+    "total_checks": 3,
+    "passed": 2,
+    "failed": 1,
+    "pass_rate": 66.67
+  },
+  "results": [
+    {
+      "rule_name": "missing_values_check",
+      "passed": true,
+      "severity": "info",
+      "message": "Found 0 columns exceeding 30.0% missing values",
+      "affected_rows": 0,
+      "affected_columns": [],
+      "details": {
+        "threshold": 0.3,
+        "columns_exceeding_threshold": [],
+        "missing_percentages": {}
+      }
+    },
+    {
+      "rule_name": "duplicate_check",
+      "passed": "False",
+      "severity": "warning",
+      "message": "Found 10 duplicate records",
+      "affected_rows": 10,
+      "affected_columns": [],
+      "details": {
+        "total_duplicates": 10,
+        "percentage": 0.9900990099009901
+      }
+    },
+    {
+      "rule_name": "column_existence_check",
+      "passed": true,
+      "severity": "info",
+      "message": "Missing 0 required columns",
+      "affected_rows": 0,
+      "affected_columns": [],
+      "details": {
+        "required_columns": [
+          "customer_id",
+          "name",
+          "age",
+          "email",
+          "salary"
+        ],
+        "missing_columns": [],
+        "found_columns": [
+          "customer_id",
+          "name",
+          "age",
+          "email",
+          "salary",
+          "join_date",
+          "status",
+          "purchase_count"
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "ValidationResult(rule_name='duplicate_check', passed=np.False_, severity='warning', message='Found 10 duplicate records', details={'total_duplicates': 10, 'percentage': 0.9900990099009901}, affected_rows=10, affected_columns=[], timestamp='2026-01-26T15:18:09.758277')"
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "overview": {
+    "total_records": 1010,
+    "total_columns": 8,
+    "missing_values": 457,
+    "duplicate_rows": 10,
+    "memory_usage_mb": 0.2511167526245117
+  },
+  "numerical_stats": {
+    "customer_id": {
+      "mean": 495.5990099009901,
+      "std": 291.5379447685176,
+      "min": 1.0,
+      "q25": 243.25,
+      "median": 495.5,
+      "q75": 747.75,
+      "max": 1000.0,
+      "skewness": 0.0019252275059335007,
+      "kurtosis": -1.2025209498867828
+    },
+    "age": {
+      "mean": 51.073639274279614,
+      "std": 25.993628387797273,
+      "min": 18.0,
+      "q25": 34.0,
+      "median": 50.0,
+      "q75": 65.0,
+      "max": 200.0,
+      "skewness": 2.881017206854032,
+      "kurtosis": 14.79906010083535
+    },
+    "salary": {
+      "mean": 73185.06902838839,
+      "std": 87830.48184863712,
+      "min": 1572.990330107852,
+      "q25": 48291.517125701444,
+      "median": 61679.73241593939,
+      "q75": 75573.71880384628,
+      "max": 936785.5382915738,
+      "skewness": 7.021539762227702,
+      "kurtosis": 53.180883332220155
+    },
+    "purchase_count": {
+      "mean": 4.93960396039604,
+      "std": 2.0627701412622326,
+      "min": 0.0,
+      "q25": 3.0,
+      "median": 5.0,
+      "q75": 6.0,
+      "max": 12.0,
+      "skewness": 0.39611765887886796,
+      "kurtosis": 0.17263181492012558
+    }
+  },
+  "categorical_stats": {
+    "name": {
+      "unique_count": 6,
+      "top_value": "John",
+      "top_count": 181,
+      "missing_count": 0
+    },
+    "email": {
+      "unique_count": 900,
+      "top_value": "customer1@email.com",
+      "top_count": 2,
+      "missing_count": 101
+    },
+    "join_date": {
+      "unique_count": 1000,
+      "top_value": "2020-01-01",
+      "top_count": 2,
+      "missing_count": 0
+    },
+    "status": {
+      "unique_count": 3,
+      "top_value": "active",
+      "top_count": 271,
+      "missing_count": 253
+    }
+  },
+  "data_types": {
+    "customer_id": "int64",
+    "name": "object",
+    "age": "float64",
+    "email": "object",
+    "salary": "float64",
+    "join_date": "object",
+    "status": "object",
+    "purchase_count": "int64"
+  }
+}
