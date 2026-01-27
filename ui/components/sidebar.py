@@ -13,12 +13,12 @@ def render_sidebar():
     selection = st.sidebar.radio(
         "Go to",
         [
-            "📁 Upload Dataset", 
-            "📊 Data Overview", 
-            "🔍 Type Inspector", 
-            "🧹 Cleaning Lab", 
-            "📉 Visualization", 
-            "📥 Export Results"
+            "1️⃣ Upload Dataset", 
+            "2️⃣ Data Overview", 
+            "3️⃣ Cleaning Lab", 
+            "4️⃣ Analysis Summary", 
+            "5️⃣ Visualizations", 
+            "6️⃣ Export Results"
         ]
     )
     

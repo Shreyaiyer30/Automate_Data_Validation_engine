@@ -100,3 +100,10 @@ class DateFormatter:
             return valid_ratio >= threshold
         except:
             return False
+
+    @staticmethod
+    def parse_date_column(series: pd.Series, format: str) -> pd.Series:
+        """
+        Parse a column with an explicit date format.
+        """
+        return pd.to_datetime(series, format=format, errors='coerce')

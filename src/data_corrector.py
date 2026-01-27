@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from .outlier_detector import get_outlier_indices
+from outlier_detector import get_outlier_indices
 
 def correct_data(df, rules, settings):
     """

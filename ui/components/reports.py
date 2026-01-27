@@ -26,3 +26,13 @@ def render_reports(report):
             mime="application/json"
         )
         st.json(report)
+    
+    with st.expander("Full JSON Quality Report", expanded=False):
+        st.download_button(
+            "Download Full Report",
+            data=json.dumps(report, indent=4),
+            file_name="quality_report.json",
+            mime="application/json"
+        )
+        st.json(report)
+    

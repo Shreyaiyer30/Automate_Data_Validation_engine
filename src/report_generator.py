@@ -99,5 +99,12 @@ def log_audit(logger, action, details):
                 serializable_details[k] = str(v)
     else:
         serializable_details = str(details)
-        
+    
+    if logger is None:
+        return  # silently skip logging
+
+    import json
+    serializable_details = {
+        k: str(v) for k, v in details.items()
+    }
     logger.info(f"ACTION: {action} | DETAILS: {json.dumps(serializable_details)}")

@@ -63,3 +63,434 @@
 [data-testid="stMetricValue"] {
     color: #667eea !important;
 }
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* DARK THEME - Black background, White text */
+html,
+body,
+[class*="css"] {
+    font-family: 'Inter', sans-serif;
+    color: #ffffff !important;
+    background-color: #0a0a0a !important;
+}
+
+/* Main app background */
+.main {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+}
+
+.stApp {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;
+    min-height: 100vh;
+}
+
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background: transparent !important;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 0;
+    backdrop-filter: none;
+}
+
+/* Dark theme text colors */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+label {
+    color: #ffffff !important;
+}
+
+/* Animated Header - Neon gradient */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes neonGlow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+    }
+
+    50% {
+        text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hero-header {
+    animation: fadeInDown 1s ease-out;
+    background: linear-gradient(270deg, #00ffff, #ff00ff, #ffff00, #00ff00);
+    background-size: 800% 800%;
+    animation: gradient 8s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 10px rgba(0, 255, 255, 0.3);
+}
+
+/* Dark Glassmorphism Cards */
+.glass-card {
+    background: rgba(30, 30, 30, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    color: #ffffff !important;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 255, 0.3) !important;
+    box-shadow: 0 12px 48px rgba(0, 255, 255, 0.2);
+}
+
+/* Dark Metric Cards */
+[data-testid="stMetric"] {
+    background: rgba(40, 40, 40, 0.9) !important;
+    backdrop-filter: blur(8px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    color: #ffffff !important;
+}
+
+[data-testid="stMetric"]:hover {
+    transform: scale(1.02);
+    border-color: #00ffff !important;
+    box-shadow: 0 8px 30px rgba(0, 255, 255, 0.2);
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+[data-testid="stMetricLabel"] {
+    font-weight: 500 !important;
+    color: #cccccc !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+[data-testid="stMetricDelta"] {
+    /* # color: #00ff00 !important;
+        # font-weight: 600 !important; */
+    color: #555 !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Dark Dataframe */
+.stDataFrame {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    background: #1a1a1a !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Dataframe table styling */
+.stDataFrame table {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+.stDataFrame th {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border-bottom: 2px solid #00ffff !important;
+}
+
+.stDataFrame td {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.stDataFrame tr:hover td {
+    background-color: rgba(0, 255, 255, 0.1) !important;
+}
+
+/* Dark Buttons */
+.stButton>button {
+    border-radius: 8px !important;
+    padding: 0.5rem 1.5rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    background: linear-gradient(135deg, #00ffff, #0088ff) !important;
+    color: #000000 !important;
+    border: none !important;
+}
+
+.stButton>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4) !important;
+}
+
+.stDownloadButton>button {
+    background: linear-gradient(135deg, #ff00ff, #8800ff) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.6rem 1.5rem !important;
+    font-weight: 500 !important;
+    box-shadow: 0 4px 20px rgba(255, 0, 255, 0.3) !important;
+}
+
+.stDownloadButton>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 0, 255, 0.5) !important;
+}
+
+/* Dark Sidebar */
+[data-testid="stSidebar"] {
+    background: rgba(20, 20, 20, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: #ffffff !important;
+}
+
+/* Sidebar widgets */
+[data-testid="stSidebar"] .stSelectbox>div,
+[data-testid="stSidebar"] .stMultiSelect>div,
+[data-testid="stSidebar"] .stTextInput>div,
+[data-testid="stSidebar"] .stSlider>div>div {
+    background-color: #2a2a2a !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+}
+
+[data-testid="stSidebar"] .stSelectbox>div:hover,
+[data-testid="stSidebar"] .stMultiSelect>div:hover {
+    border-color: #00ffff !important;
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2) !important;
+}
+
+/* Radio buttons and checkboxes in sidebar */
+[data-testid="stSidebar"] .stRadio>label,
+[data-testid="stSidebar"] .stCheckbox>label {
+    color: #ffffff !important;
+}
+
+/* Floating stats bar */
+.floating-stats {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(30, 30, 30, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Tabs styling */
+.stTabs [data-baseweb="tab-list"] {
+    background-color: transparent !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+    background-color: transparent !important;
+    color: #cccccc !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: #00ffff !important;
+    background-color: rgba(0, 255, 255, 0.1) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: #00ffff !important;
+    border-bottom: 2px solid #00ffff !important;
+    font-weight: 600 !important;
+}
+
+/* Expanders */
+.streamlit-expanderHeader {
+    background: rgba(40, 40, 40, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+}
+
+.streamlit-expanderHeader:hover {
+    border-color: #00ffff !important;
+    background: rgba(40, 40, 40, 1) !important;
+}
+
+.streamlit-expanderContent {
+    background: rgba(30, 30, 30, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-top: none !important;
+    border-radius: 0 0 8px 8px !important;
+}
+
+/* Progress bar */
+[data-testid="stProgress"]>div>div {
+    background: linear-gradient(90deg, #00ffff, #ff00ff) !important;
+    border-radius: 8px !important;
+}
+
+/* Text area and inputs */
+.stTextArea textarea,
+.stTextInput input {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.stTextArea textarea:focus,
+.stTextInput input:focus {
+    border-color: #00ffff !important;
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2) !important;
+}
+
+/* File uploader */
+.stFileUploader {
+    border: 2px dashed rgba(0, 255, 255, 0.3) !important;
+    background: rgba(40, 40, 40, 0.5) !important;
+    border-radius: 12px !important;
+}
+
+.stFileUploader:hover {
+    border-color: #00ffff !important;
+    background: rgba(40, 40, 40, 0.8) !important;
+}
+
+/* Success/Error/Warning messages */
+.stAlert {
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.element-container div[data-testid="stSuccess"] {
+    background: rgba(0, 255, 0, 0.1) !important;
+    border-left: 4px solid #00ff00 !important;
+}
+
+.element-container div[data-testid="stError"] {
+    background: rgba(255, 0, 0, 0.1) !important;
+    border-left: 4px solid #ff0000 !important;
+}
+
+.element-container div[data-testid="stWarning"] {
+    background: rgba(255, 255, 0, 0.1) !important;
+    border-left: 4px solid #ffff00 !important;
+}
+
+.element-container div[data-testid="stInfo"] {
+    background: rgba(0, 255, 255, 0.1) !important;
+    border-left: 4px solid #00ffff !important;
+}
+
+/* Divider */
+hr {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Code blocks */
+code {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: #00ffff !important;
+    border: 1px solid rgba(0, 255, 255, 0.3) !important;
+    border-radius: 4px !important;
+    padding: 2px 6px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-header {
+        font-size: 2.5rem !important;
+    }
+
+    .glass-card {
+        padding: 1rem !important;
+    }
+
+    [data-testid="stMetricValue"] {
+        font-size: 1.5rem !important;
+    }
+}
