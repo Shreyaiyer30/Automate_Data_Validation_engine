@@ -1,23 +1,65 @@
-/* UI Style overrides */
-.stApp {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+/* Standard Theme-Safe Styles for Data Engine v2 */
+
+/* 1. Global Visibility Fix - Forces Black Text */
+* {
+    color: #1A1A1A !important;
 }
 
-.stTabs [data-baseweb="tab-list"] {
-    gap: 20px;
+/* 2. Header Gradient - Reliable Fallback */
+.header-gradient {
+    font-weight: 800;
+    font-size: 2.8rem;
+    margin-bottom: 0.2rem;
+    color: #0984E3 !important;
+    /* Override global black for title */
+    background: linear-gradient(90deg, #0984E3, #00B894);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.stTabs [data-baseweb="tab"] {
-    height: 50px;
-    white-space: pre-wrap;
-    background-color: #ffffff;
-    border-radius: 5px 5px 0 0;
-    gap: 1px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+/* 3. Transparent Info Cards - Adapts to Theme Background */
+.metric-card-custom {
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    background-color: rgba(128, 128, 128, 0.05);
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
-.stTabs [aria-selected="true"] {
-    background-color: #4CAF50;
-    color: white;
+/* 4. Gradient Divider */
+.divider-gradient {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00B894, transparent);
+    margin: 2rem 0;
+    border: none;
+}
+
+/* 5. Button Gradient (User Added) */
+.button-gradient {
+    background: linear-gradient(90deg, #0984E3, #00B894);
+    color: white !important;
+    /* Override global black for buttons */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-gradient:hover {
+    background: linear-gradient(90deg, #00B894, #0984E3);
+}
+
+/* 6. Sidebar Specific Overrides */
+[data-testid="stSidebar"] [data-testid="stMarkdown"] p {
+    color: white !important;
+    /* Keep sidebar text white for contrast against purple gradient */
+}
+
+/* 7. Metric Value Overrides */
+[data-testid="stMetricValue"] {
+    color: #667eea !important;
 }
