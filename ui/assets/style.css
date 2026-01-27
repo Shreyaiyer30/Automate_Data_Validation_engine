@@ -2,7 +2,7 @@
 
 /* 1. Global Visibility Fix - Forces Black Text */
 * {
-    color: #1A1A1A !important;
+    color: #111111 !important;
 }
 
 /* 2. Header Gradient - Reliable Fallback */
