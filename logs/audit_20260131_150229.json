@@ -1,0 +1,213 @@
+{
+  "summary": {
+    "session_id": "20260131_150229",
+    "schema_version": "1.1.0",
+    "stages_executed": 1,
+    "total_duration_ms": 8.51,
+    "errors": 0
+  },
+  "entries": [
+    {
+      "event": "STEP_START",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "input_rows": 14,
+      "input_cols": 16,
+      "timestamp": "2026-01-31T15:02:29.484866",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "num_critic_for_reviews"
+      },
+      "timestamp": "2026-01-31T15:02:29.487172",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "duration"
+      },
+      "timestamp": "2026-01-31T15:02:29.487693",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "director_facebook_likes"
+      },
+      "timestamp": "2026-01-31T15:02:29.488126",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "actor_3_facebook_likes"
+      },
+      "timestamp": "2026-01-31T15:02:29.488439",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "actor_1_facebook_likes"
+      },
+      "timestamp": "2026-01-31T15:02:29.488740",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "gross"
+      },
+      "timestamp": "2026-01-31T15:02:29.489054",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "num_voted_users"
+      },
+      "timestamp": "2026-01-31T15:02:29.489381",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "cast_total_facebook_likes"
+      },
+      "timestamp": "2026-01-31T15:02:29.489866",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "facenumber_in_poster"
+      },
+      "timestamp": "2026-01-31T15:02:29.490556",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "num_user_for_reviews"
+      },
+      "timestamp": "2026-01-31T15:02:29.491066",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "budget"
+      },
+      "timestamp": "2026-01-31T15:02:29.491508",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "title_year"
+      },
+      "timestamp": "2026-01-31T15:02:29.491718",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "actor_2_facebook_likes"
+      },
+      "timestamp": "2026-01-31T15:02:29.492088",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "imdb_score"
+      },
+      "timestamp": "2026-01-31T15:02:29.492468",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "MUTATION",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "type": "cast_numeric",
+      "details": {
+        "column": "title_year1"
+      },
+      "timestamp": "2026-01-31T15:02:29.492653",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    },
+    {
+      "event": "STEP_COMPLETE",
+      "severity": "INFO",
+      "stage": "TYPE_DETECTION",
+      "output_rows": 14,
+      "output_cols": 16,
+      "duration_ms": 8.51,
+      "metadata": {},
+      "timestamp": "2026-01-31T15:02:29.493395",
+      "session_id": "20260131_150229",
+      "schema_version": "1.1.0"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+# Default configuration for Automated Data Validation Engine
+
+# Schema configuration
+schema:
+  required_columns: []
+  data_types: {}
+  # Example:
+  # data_types:
+  #   id: "int64"
+  #   name: "string"
+  #   age: "int32"
+  #   salary: "float64"
+  #   join_date: "datetime64[ns]"
+  #   is_active: "bool"
+  #   department: "category"
+
+# Missing values handling
+missing_values:
+  strategies:
+    numeric: "median"
+    categorical: "mode"
+    datetime: "forward_fill"
+  thresholds:
+    column_threshold: 50.0  # Drop columns with > 50% missing
+    row_threshold: 50.0     # Drop rows with > 50% missing
+  mandatory_columns: []     # Columns that cannot have missing values
+
+# Outlier detection and handling
+outliers:
+  method: "zscore"          # "zscore" or "iqr"
+  zscore_threshold: 3.0     # Values beyond 3 standard deviations
+  iqr_multiplier: 1.5       # For IQR method
+  strategy: "cap"           # "cap", "remove", or "mark"
+
+# Deduplication
+duplicates:
+  remove_full_row_duplicates: true
+  primary_key: []           # Columns to use for deduplication
+  keep: "first"             # "first", "last", or false (remove all duplicates)
+
+# Text cleaning
+text_cleaning:
+  strip_whitespace: true
+  normalize_case: null      # "lower", "upper", or null
+  remove_special_characters: false
+  allowed_values: {}
+  # Example:
+  # allowed_values:
+  #   department: ["IT", "HR", "Finance", "Marketing"]
+
+# Validation thresholds
+validation:
+  max_missing_row_percentage: 50.0
+  max_duplicate_percentage: 10.0
+
+# Pipeline stages configuration
+stages:
+  detect_types:
+    enabled: true
+    critical: false
+    parameters: {}
+  
+  normalize_structure:
+    enabled: true
+    critical: false
+    parameters: {}
+  
+  enforce_schema:
+    enabled: true
+    critical: true
+    parameters: {}
+  
+  clean_text:
+    enabled: true
+    critical: false
+    parameters: {}
+  
+  deduplicate:
+    enabled: true
+    critical: false
+    parameters: {}
+  
+  handle_missing:
+    enabled: true
+    critical: false
+    parameters: {}
+  
+  handle_outliers:
+    enabled: true
+    critical: false
+    parameters: {}
+  
+  verify:
+    enabled: true
+    critical: true
+    parameters: {}
+
+# Performance settings
+max_file_size_mb: 100.0
+enable_parallel_processing: false
+max_workers: 4
+
+# Output settings
+output_format: "csv"        # "csv", "parquet", or "excel"
+compress_output: false
+
+# Logging
+logging:
+  level: "INFO"             # "DEBUG", "INFO", "WARNING", "ERROR"
+  file: "pipeline.log"
+  max_size_mb: 10
+  backup_count: 5

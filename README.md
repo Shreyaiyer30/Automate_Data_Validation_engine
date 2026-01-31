@@ -1,54 +1,40 @@
-# Automated Data Validation & Cleaning Engine
+# Automated Data Validation & Cleaning Engine (v2)
 
-A robust, modular Python tool to validate and clean raw CSV datasets. Supports both a Streamlit UI for interactive analysis and a CLI for automated pipelines.
+A production-ready data cleaning pipeline with a modern Streamlit UI. Designed for high-performance data validation, cleaning, and reporting.
 
-## Project Structure
-- `src/`: Core logic (Validation, Outlier Detection, Correction, Reporting)
-- `ui/`: Streamlit dashboard
-- `cli/`: Command-line interface
-- `config/`: Validation rules defined in YAML
-- `tests/`: Pytest suite
+## 🚀 Key Features
+- **Clean Architecture**: Decoupled core engine, validation stages, and UI.
+- **Atomic Pipeline**: Orchestrated stages with robust error handling.
+- **Audit Logging**: Full traceability for every data mutation.
+- **Quality Reporting**: Automated scoring (0-100) and descriptive metrics.
+- **Modern UI**: Dark-themed, glassmorphic Streamlit interface.
 
-## Features
-- **Schema Validation**: Checks for missing columns and data type mismatches.
-- **Missing Value Correction**: Automatically fills missing values using mean or mode.
-- **Outlier Detection**: Statistical outlier detection using Z-score.
-- **Outlier Capping**: Automatically caps outliers to keep data within statistical bounds.
-- **Duplicate Removal**: Removes duplicate rows based on all columns.
-- **Quality Reports**: Generates detailed JSON reports with before/after metrics.
-- **Audit Logging**: Keeps an audit trail of all operations in `logs/audit.log`.
+## 🛠️ Project Structure
+```text
+automated-data-validation-engine/
+├── data/              # Dataset storage
+├── src/
+│   ├── engine/        # Core pipeline logic
+│   ├── cli/           # CLI tools
+│   └── utils/         # Helper functions
+├── ui/                # Streamlit interface
+├── tests/             # Quality assurance
+└── run.py             # Entry point
+```
 
-## Setup
-1. Install dependencies:
+## 🚦 Quick Start
+1. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
+2. **Launch the UI**:
+   ```bash
+   python run.py
+   ```
+   Or directly:
+   ```bash
+   streamlit run ui/app.py
+   ```
 
-## Usage
-
-### Streamlit UI
-Run the interactive dashboard:
-```bash
-streamlit run ui/app.py
-```
-
-### CLI
-Process a file via command line:
-```bash
-python cli/main.py --file path/to/data.csv --report report.json --output cleaned_data.csv
-```
-
-## Configuration
-Customize validation rules in `config/rules.yaml`. You can define:
-- Required columns
-- Expected data types
-- Minimum and maximum value ranges
-- Outlier sensitivity (Z-score threshold)
-- Missing value strategies
-
-## Testing
-Run tests using pytest:
-```bash
-pytest
-```
-
+## 🔧 Extending the Pipeline
+Add new stages to `src/engine/stages/` by inheriting from `BaseStage` and registering them in `LifecycleManager`.

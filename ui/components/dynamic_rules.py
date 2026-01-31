@@ -25,8 +25,17 @@ def render_dynamic_rules_editor(df: pd.DataFrame, processor):
     quality_score = analysis.get('quality_score', 100)
     st.metric("Data Quality Score", f"{quality_score:.1f}/100")
 
-    # Display rules in expandable sections
+    # Global Rules
+    with st.expander("🌐 Global Cleaning Rules", expanded=True):
+        remove_dups = st.checkbox(
+            "Remove duplicate rows", 
+            value=auto_rules.get('_global', {}).get('remove_duplicates', False)
+        )
+        if '_global' not in auto_rules: auto_rules['_global'] = {}
+        auto_rules['_global']['remove_duplicates'] = remove_dups
+
     for col, rules in auto_rules.items():
+        if col.startswith("_"): continue
         with st.expander(f"📊 {col} ({df[col].dtype})", expanded=False):
             col1, col2 = st.columns([2, 1])
             
