@@ -55,15 +55,77 @@ st.markdown("""
         font-weight: 800;
         font-size: 3.5rem;
     }
+    
+    /* Pipeline Progress Styles */
+    .pipeline-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        padding: 10px;
+        background: rgba(20, 20, 20, 0.5);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Enterprise Table Styling */
+    [data-testid="stDataFrame"] {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    [data-testid="stTable"] {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        background: transparent;
+    }
+    
+    [data-testid="stTable"] thead th {
+        background-color: rgba(60, 60, 60, 0.5) !important;
+        color: #00ffff !important;
+        font-weight: 600 !important;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+    
+    [data-testid="stTable"] tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.02);
+    }
+    
+    .st-emotion-cache-16idsys p { font-size: 0.9rem; }
+    .step {
+        text-align: center;
+        flex: 1;
+        position: relative;
+        font-size: 0.8rem;
+        color: #666;
+    }
+    .step.active { color: #00ffff; font-weight: 600; }
+    .step.complete { color: #00ff00; }
+    .step.fail { color: #ff4b4b; }
+    .step-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #333;
+        margin: 0 auto 5px;
+    }
+    .active .step-circle { background: #00ffff; box-shadow: 0 0 10px #00ffff; }
+    .complete .step-circle { background: #00ff00; }
+    .fail .step-circle { background: #ff4b4b; }
 </style>
 """, unsafe_allow_html=True)
 
 # --- State Initialization ---
 from src.data_processor import DataProcessor
-if 'processor' not in st.session_state: st.session_state.processor = DataProcessor()
+# Force re-init if the object is outdated (handles Streamlit session state persistence across code changes)
+if 'processor' not in st.session_state or not hasattr(st.session_state.processor, 'simulate_impact') or not hasattr(st.session_state.processor, 'audit_export'): 
+    st.session_state.processor = DataProcessor()
 if 'df_raw' not in st.session_state: st.session_state.df_raw = None
 if 'df_cleaned' not in st.session_state: st.session_state.df_cleaned = None
 if 'report' not in st.session_state: st.session_state.report = None
+if 'metadata' not in st.session_state: st.session_state.metadata = None
 if 'page' not in st.session_state: st.session_state.page = "Upload"
 if 'active_rules' not in st.session_state: st.session_state.active_rules = {}
 
@@ -75,6 +137,7 @@ with st.sidebar:
     nav_options = {
         "📁 Upload Data": "Upload",
         "📊 Data Overview (RAW)": "Overview",
+        "🔍 Analyze Data": "Analyze",
         "🧪 Cleaning Lab": "Cleaning",
         "📉 Visualization": "Visualization",
         "📥 Export Results": "Export"
@@ -88,8 +151,39 @@ with st.sidebar:
             st.session_state.page = target
             st.rerun()
 
-# --- Page Routing ---
+    st.markdown("---")
+    if st.button("🔄 System Reset", use_container_width=True, help="Force clear session state (use if UI errors persist)"):
+        for key in list(st.session_state.keys()):
+            del st.session_state[key]
+        st.rerun()
+
+# --- Page Routing & Pipeline Status ---
 page = st.session_state.page
+
+# Render Persistent Pipeline Header
+pipeline_steps = ["Upload", "Overview", "Analyze", "Cleaning", "Visualization", "Export"]
+cols = st.columns(len(pipeline_steps))
+for i, step in enumerate(pipeline_steps):
+    is_active = page == step
+    is_complete = False # Logic here based on session state
+    is_fail = False
+    
+    # Simple Mock logic for now
+    if i < pipeline_steps.index(page): is_complete = True
+    if st.session_state.report and st.session_state.report.get('quality_score', 0) < 50:
+         # Just as an example of failure viz
+         pass 
+
+    status_class = "active" if is_active else ("complete" if is_complete else "")
+    with cols[i]:
+        st.markdown(f"""
+        <div class="step {status_class}">
+            <div class="step-circle"></div>
+            {step}
+        </div>
+        """, unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 if page == "Upload":
     st.markdown("<h1 class='hero-gradient'>Start Your Journey</h1>", unsafe_allow_html=True)
@@ -99,6 +193,18 @@ if page == "Upload":
 
 elif page == "Overview":
     render_overview_section(st.session_state.df_raw)
+
+elif page == "Analyze":
+    # Show analysis results which are used to suggest rules
+    st.markdown("## 🔍 DATA ANALYSIS")
+    analysis = st.session_state.processor.analyze_data_quality(st.session_state.df_raw)
+    
+    st.markdown(f"### Quality Score: {analysis['quality_score']:.1f}/100")
+    
+    with st.expander("📝 View Suggested Cleaning Strategy", expanded=True):
+        st.json(analysis['suggested_rules'])
+        
+    st.info("The next step 'Cleaning Lab' will allow you to fine-tune these rules.")
 
 elif page == "Cleaning":
     render_cleaning_lab(st.session_state.df_raw)

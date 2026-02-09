@@ -1,0 +1,19 @@
+pipeline:
+  thresholds:
+    max_missing_row_percentage: 50.0
+    outlier_method: "iqr"  # Choices: "iqr", "z-score"
+    z_threshold: 3.0
+  auto_imputation: true
+  enable_schema_validation: true
+
+cleaning:
+  standardize_headers: true
+  remove_duplicates: true
+  strip_whitespace: true
+  handle_special_characters: true
+  date_format: "%Y-%m-%d"
+
+reporting:
+  generate_pdf: false
+  save_json: true
+  audit_level: "VERBOSE"

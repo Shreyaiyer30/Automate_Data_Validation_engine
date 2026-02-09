@@ -25,7 +25,7 @@ class AtomicEngine:
         self.reporter = QualityReport()
         self.lifecycle = LifecycleManager(self.logger)
 
-    def run(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+    def run(self, df: pd.DataFrame, initial_stats: Dict[str, Any] = None) -> Tuple[pd.DataFrame, Dict[str, Any]]:
         """Execute the full data quality pipeline and return cleaned data + report."""
         initial_df = df.copy()
         
@@ -44,7 +44,8 @@ class AtomicEngine:
             initial_df=initial_df, 
             final_df=final_df, 
             audit_entries=self.logger.entries,
-            config=self.config
+            config=self.config,
+            initial_stats=initial_stats
         )
         
         return final_df, report

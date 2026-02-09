@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-from src.utils.file_loader import robust_read_csv
-from src.utils.file_loader import smart_load
+from src.utils.file_loader import EnhancedDataLoader
 
 def render_upload_section():
     uploaded_file = st.file_uploader(
@@ -11,11 +10,19 @@ def render_upload_section():
 
     if uploaded_file:
         try:
-            df, metadata = smart_load(uploaded_file)
+            # Create loader and load file
+            loader = EnhancedDataLoader(verbose=True)
+            df, metadata = loader.load(uploaded_file)
 
-            st.success("File uploaded successfully")
-            st.session_state["raw_df"] = df
-            st.session_state["load_metadata"] = metadata
+            st.success(f"Successfully loaded '{uploaded_file.name}'")
+            st.session_state.df_raw = df
+            st.session_state.metadata = metadata
+            
+            # Clear downstream state to prevent desync errors
+            st.session_state.df_cleaned = None
+            st.session_state.report = None
+            st.session_state.active_rules = {}
+            
             return True
 
         except Exception as e:

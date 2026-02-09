@@ -13,12 +13,15 @@ class CleanDataStage(BaseStage):
     def name(self) -> str:
         return "CLEAN_DATA"
 
-    def execute(self, df: pd.DataFrame, config: Dict[str, Any]) -> pd.DataFrame:
+    def execute(self, df: pd.DataFrame, config: Dict[str, Any]) -> Tuple[pd.DataFrame, StageState]:
+        from src.engine.stages.base_stage import StageState
         df = df.copy()
         text_config = config.get("cleaning", {}).get("text", {})
         case_mode = text_config.get("case", "none") # none, upper, lower, title
+        state = StageState.PASS
         
         for col in df.select_dtypes(include=['object']).columns:
+            state = StageState.WARN
             # 1. Trim
             df[col] = df[col].astype(str).str.strip()
             
@@ -39,4 +42,4 @@ class CleanDataStage(BaseStage):
                 "trimmed": True
             })
             
-        return df
+        return df, state

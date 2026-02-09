@@ -225,6 +225,37 @@ def get_data_summary(df: pd.DataFrame) -> Dict[str, Any]:
     
     return summary
 
+def get_column_stats(series: pd.Series) -> Dict[str, Any]:
+    """Calculate detailed statistics for a single column."""
+    stats = {
+        'dtype': str(series.dtype),
+        'null_count': int(series.isna().sum()),
+        'null_pct': round((series.isna().sum() / len(series) * 100), 2) if len(series) > 0 else 0,
+        'nunique': int(series.nunique())
+    }
+    
+    if pd.api.types.is_numeric_dtype(series):
+        non_null = series.dropna()
+        if not non_null.empty:
+            stats.update({
+                'min': float(non_null.min()),
+                'max': float(non_null.max()),
+                'mean': float(non_null.mean()),
+                'median': float(non_null.median()),
+                'std': float(non_null.std())
+            })
+            
+            # Outliers count
+            q1 = non_null.quantile(0.25)
+            q3 = non_null.quantile(0.75)
+            iqr = q3 - q1
+            outliers = non_null[(non_null < (q1 - 1.5 * iqr)) | (non_null > (q3 + 1.5 * iqr))]
+            stats['outlier_count'] = int(len(outliers))
+        else:
+            stats.update({'min': 0, 'max': 0, 'mean': 0, 'outlier_count': 0})
+            
+    return stats
+
 def calculate_missing_stats(df: pd.DataFrame) -> Dict[str, Any]:
     """
     Calculate detailed missing value statistics.

@@ -19,9 +19,12 @@ def render_dashboard(report, df_raw, df_cleaned):
     # Use the report for accurate detection
     date_corrections = report.get('correction_details', {}).get('date_corrections', {})
     
+    header_mapping = report.get('header_normalization', {}).get('mapping', {})
+    
     if date_corrections:
         for col, details in date_corrections.items():
             date_columns.append(col)
+            normalized_col = header_mapping.get(col, col)
             with st.expander(f"📌 Column: {col} Details", expanded=True):
                 c1, c2 = st.columns(2)
                 with c1:
@@ -29,12 +32,13 @@ def render_dashboard(report, df_raw, df_cleaned):
                     st.dataframe(df_raw[col].head(5).reset_index(drop=True), use_container_width=True)
                 with c2:
                     st.markdown("**Standardized Samples**")
-                    st.dataframe(df_cleaned[col].head(5).reset_index(drop=True), use_container_width=True)
+                    # Cleaned state uses normalized headers
+                    st.dataframe(df_cleaned[normalized_col].head(5).reset_index(drop=True), use_container_width=True)
                 
                 st.info(f"✅ Corrected as **{details['detected']}** format. Total {details['count']} records standardized.")
     else:
         st.info("No date-specific corrections were required for this dataset.")
-
+ 
     # 2. Quality Metrics Profiling
     st.markdown("---")
     st.subheader("📈 Statistical Profiling")
@@ -43,7 +47,9 @@ def render_dashboard(report, df_raw, df_cleaned):
         stats = report['profiling'].get('statistics', {})
         if stats:
             stats_df = pd.DataFrame(stats).T
-            st.dataframe(stats_df.style.highlight_max(axis=0, color='rgba(102, 126, 234, 0.2)'), use_container_width=True)
+            col_cfg = {col: col.replace('_', ' ').title() for col in stats_df.columns}
+            st.dataframe(stats_df.style.highlight_max(axis=0, color='rgba(102, 126, 234, 0.2)'), 
+                         use_container_width=True, column_config=col_cfg)
         else:
             st.warning("No numeric columns available for statistical profiling.")
 

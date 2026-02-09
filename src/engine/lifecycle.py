@@ -18,21 +18,27 @@ class LifecycleManager:
         self.logger = logger
         # Define the canonical pipeline order
         self.stages = [
+            SchemaCheckStage(logger),
             DetectTypesStage(logger),
             CleanDataStage(logger),
-            SchemaCheckStage(logger),
             DuplicatesStage(logger),
             MissingValuesStage(logger),
             OutliersStage(logger)
         ]
 
     def run_pipeline(self, df: pd.DataFrame, config: Dict[str, Any]) -> pd.DataFrame:
-        """Execute all registered stages in order."""
+        """Execute all registered stages in order, respecting FAIL semantics."""
+        from src.engine.stages.base_stage import StageState
+        
         for stage in self.stages:
             try:
-                df = stage.run(df, config)
+                # Stages now return (df, state)
+                df, state = stage.run(df, config)
+                if state == StageState.FAIL:
+                    self.logger.log_error(stage.name, "PIPELINE_BLOCKED", f"Pipeline execution halted due to FAIL state in {stage.name}")
+                    break
             except Exception as e:
-                # Log error and continue to next stage if possible
-                self.logger.log_error(stage.name, "STAGE_FAILURE", f"Stage failed: {str(e)}")
-                continue
+                # Log error and stop execution for safety
+                self.logger.log_error(stage.name, "STAGE_FAILURE", f"Stage failed unexpectedly: {str(e)}")
+                break
         return df

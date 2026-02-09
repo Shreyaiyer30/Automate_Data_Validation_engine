@@ -1,9 +1,0 @@
-age,income,email,joining_date
-25,50000.0,alice@example.com,2023-01-01
-30,,bob@example.com,2023-02-01
-200,60000.0,charlie@example.com,2023-03-01
-45,70000.0,alice@example.com,2023-01-01
-35,80000.0,diana@example.com,invalid_date
-,90000.0,eve@example.com,2023-05-01
-121,100000.0,frank@example.com,2023-06-01
-28,45000.0,,2023-07-01

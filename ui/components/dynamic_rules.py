@@ -25,83 +25,122 @@ def render_dynamic_rules_editor(df: pd.DataFrame, processor):
     quality_score = analysis.get('quality_score', 100)
     st.metric("Data Quality Score", f"{quality_score:.1f}/100")
 
-    # Global Rules
-    with st.expander("🌐 Global Cleaning Rules", expanded=True):
-        remove_dups = st.checkbox(
-            "Remove duplicate rows", 
-            value=auto_rules.get('_global', {}).get('remove_duplicates', False)
-        )
-        if '_global' not in auto_rules: auto_rules['_global'] = {}
-        auto_rules['_global']['remove_duplicates'] = remove_dups
+    # Create the two-pane layout
+    left_col, right_col = st.columns([1, 3])
+    
+    # 1. Left Pane: Column Selector with Health Indicators
+    with left_col:
+        st.markdown("#### 📑 Columns")
+        selected_col = None
+        
+        # Global settings first
+        if st.button("🌐 Global Rules", use_container_width=True, type="primary" if st.session_state.get('selected_col') == "_global" else "secondary"):
+            st.session_state.selected_col = "_global"
+            st.rerun() if 'selected_col' not in st.session_state else None
 
-    for col, rules in auto_rules.items():
-        if col.startswith("_"): continue
-        with st.expander(f"📊 {col} ({df[col].dtype})", expanded=False):
-            col1, col2 = st.columns([2, 1])
+        for col in df.columns:
+            patterns = analysis['column_analysis'].get(col, {})
+            has_issues = patterns.get('missing_count', 0) > 0 or patterns.get('has_outliers', False) or patterns.get('has_special_chars', False)
+            badge = "🔴" if has_issues else "🟢"
             
-            with col1:
-                # Show column statistics
-                st.markdown("**Statistics:**")
-                patterns = analysis['column_analysis'][col]
-                st.write(f"Missing: {patterns['missing_count']} ({patterns['missing_percentage']:.1f}%)")
-                if pd.api.types.is_numeric_dtype(df[col]):
-                    st.write(f"Min: {patterns.get('min', 'N/A')}, Max: {patterns.get('max', 'N/A')}")
-                    if patterns.get('has_outliers'):
-                        st.warning(f"⚠️ {patterns['outlier_count']} outliers detected")
-                else:
-                    st.write(f"Unique values: {patterns['unique_count']}")
-                    if patterns.get('has_special_chars'):
-                        st.warning(f"⚠️ Special characters detected")
+            label = f"{badge} {col}"
+            if st.button(label, key=f"sel_{col}", use_container_width=True, 
+                         type="primary" if st.session_state.get('selected_col') == col else "secondary"):
+                st.session_state.selected_col = col
+                st.rerun()
+
+    # 2. Right Pane: Detailed Configuration
+    with right_col:
+        current_selection = st.session_state.get('selected_col', "_global")
+        
+        # --- ARCHITECTURAL CONTRACT: CAPABILITY CHECK ---
+        has_simulation = hasattr(processor, 'simulate_impact')
+        
+        if has_simulation:
+            # Real-time Simulation Feedback
+            projected_score = processor.simulate_impact(df, auto_rules)
+            score_delta = projected_score - quality_score
+            delta_color = "green" if score_delta >= 0 else "red"
+            delta_sign = "+" if score_delta > 0 else ""
             
-            with col2:
-                # Allow rule overrides
-                st.markdown("**Override Rules:**")
-                
+            st.markdown(f"""
+            <div class="glass-card" style="padding: 10px; border-left: 5px solid #00ffff; margin-bottom: 20px;">
+                <p style="margin:0; font-size: 0.8rem; color: #888;">Projected Quality Score</p>
+                <h3 style="margin:0;">{projected_score:.1f}% <span style="color: {delta_color}; font-size: 0.9rem;">({delta_sign}{score_delta:.1f}%)</span></h3>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.warning("⚠️ Rule impact preview unavailable – cleaning logic not affected.")
+
+        if current_selection == "_global":
+            st.markdown("#### 🌐 Global Cleaning Configuration")
+            remove_dups = st.checkbox(
+                "Remove duplicate rows", 
+                value=auto_rules.get('_global', {}).get('remove_duplicates', False)
+            )
+            if '_global' not in auto_rules: auto_rules['_global'] = {}
+            auto_rules['_global']['remove_duplicates'] = remove_dups
+            
+        elif current_selection in df.columns:
+            col = current_selection
+            rules = auto_rules.get(col, {})
+            patterns = analysis['column_analysis'][col]
+            
+            st.markdown(f"#### 📊 Column: {col}")
+            
+            c1, c2 = st.columns(2)
+            with c1:
+                st.markdown("**Field Health**")
+                st.write(f"Type: `{df[col].dtype}`")
+                st.write(f"Missing Values: {patterns['missing_count']} ({patterns['missing_percentage']:.1f}%)")
+                if patterns.get('has_outliers'):
+                    st.warning(f"⚠️ {patterns['outlier_count']} outliers detected")
+            
+            with c2:
+                st.markdown("**Importance & Logic**")
+                importance = st.selectbox(
+                    "Business Criticality",
+                    ["High", "Medium", "Low"],
+                    index=["HIGH", "MEDIUM", "LOW"].index(rules.get('importance_level', 'MEDIUM')),
+                    key=f"imp_sel_{col}"
+                )
+                auto_rules[col]['importance_level'] = importance.upper()
+
+            st.markdown("---")
+            st.markdown("**Active Transformations**")
+            
+            # Grouping transformations
+            t_col1, t_col2 = st.columns(2)
+            
+            with t_col1:
                 if df[col].dtype == 'object':
-                    handle_missing = st.selectbox(
-                        f"Handle missing",
+                    handle_missing = st.selectbox("Handle Missing Values",
                         ["fill_with_mode", "fill_with_unknown", "forward_fill", "backward_fill", "do_nothing"],
-                        index=0,
-                        key=f"missing_{col}"
-                    )
-                    auto_rules[col]['handle_missing'] = handle_missing
-                    auto_rules[col]['handle_missing'] = handle_missing
+                        key=f"miss_pane_{col}")
                 else:
-                    handle_missing = st.selectbox(
-                        f"Handle missing",
+                    handle_missing = st.selectbox("Handle Missing Values",
                         ["impute_with_median", "impute_with_mean", "forward_fill", "backward_fill", "do_nothing"],
-                        index=0,
-                        key=f"missing_{col}"
-                    )
-                    auto_rules[col]['handle_missing'] = handle_missing
-
-                # Date Format Input
-                if pd.api.types.is_datetime64_any_dtype(df[col]) or df[col].dtype == 'object':
-                     date_fmt = st.text_input(f"Date Format (Optional)", value=rules.get('date_format', ''), key=f"date_fmt_{col}", placeholder="%Y-%m-%d")
-                     if date_fmt:
-                         auto_rules[col]['date_format'] = date_fmt
-            
-            # Show suggested rules
-            st.markdown("**Suggested Transformations:**")
-            rule_cols = st.columns(3)
-            
-            i = 0
-            for rule_key, rule_value in rules.items():
-                if rule_key == 'handle_missing': 
-                    continue
+                        key=f"miss_pane_{col}")
+                auto_rules[col]['handle_missing'] = handle_missing
                 
-                with rule_cols[i % 3]:
-                    if isinstance(rule_value, bool):
-                        enabled = st.toggle(
-                            rule_key.replace('_', ' ').title(), 
-                            value=rule_value, 
-                            key=f"{col}_{rule_key}"
-                        )
-                        auto_rules[col][rule_key] = enabled
-                        i += 1
-                    elif isinstance(rule_value, (int, float)):
-                        # Just display numeric thresholds for now
-                        st.text(f"{rule_key.replace('_', ' ').title()}: {rule_value:.1f}")
-                        i += 1
+            with t_col2:
+                if pd.api.types.is_numeric_dtype(df[col]):
+                    st.write("Method: IQR Clipping (Global)")
+                elif pd.api.types.is_datetime64_any_dtype(df[col]) or df[col].dtype == 'object':
+                    date_fmt = st.text_input("Expected Date Format", value=rules.get('date_format', ''), key=f"date_pane_{col}")
+                    if date_fmt: auto_rules[col]['date_format'] = date_fmt
+
+            # Toggles for others
+            st.markdown("**Refinements**")
+            ref_cols = st.columns(3)
+            idx = 0
+            for r_key, r_val in rules.items():
+                if r_key in ['handle_missing', 'importance_level', 'date_format']: continue
+                if isinstance(r_val, bool):
+                    with ref_cols[idx % 3]:
+                        auto_rules[col][r_key] = st.toggle(r_key.replace('_', ' ').title(), value=r_val, key=f"tog_{col}_{r_key}")
+                    idx += 1
+        
+    return auto_rules
     
     return auto_rules
