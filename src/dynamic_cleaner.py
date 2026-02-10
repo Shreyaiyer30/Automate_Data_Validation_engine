@@ -33,6 +33,27 @@ class DynamicDataCleaner:
         # Order columns for consistent processing
         columns = [c for c in rules.keys() if not c.startswith("_") and c in df_clean.columns]
         
+        # 0.5 LEVEL: Semantic Validation & Transformation
+        for col in columns:
+            col_rules = rules[col]
+            semantic_type = col_rules.get("semantic_type", "UNKNOWN")
+            handle_semantic = col_rules.get("handle_semantic")
+            
+            if not handle_semantic:
+                continue
+
+            if semantic_type == "AGE":
+                df_clean[col] = self._handle_semantic_age(df_clean, col, col_rules)
+            
+            elif semantic_type == "DOB":
+                df_clean[col] = self._handle_semantic_dob(df_clean[col], col_rules)
+            
+            elif semantic_type == "EMAIL":
+                df_clean[col] = self._handle_semantic_email(df_clean[col], col)
+            
+            elif semantic_type == "PHONE":
+                df_clean[col] = self._handle_semantic_phone(df_clean[col], col)
+    
         # 1. LEVEL: Data Type Enforcement
         for col in columns:
             col_rules = rules[col]
