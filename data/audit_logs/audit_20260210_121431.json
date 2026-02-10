@@ -1,0 +1,318 @@
+{
+  "session_id": "20260210_121431",
+  "pipeline_id": null,
+  "created_at": "2026-02-10T12:15:11.589370",
+  "total_entries": 32,
+  "entries": [
+    {
+      "timestamp": "2026-02-10T12:15:11.475262",
+      "event": "stage_start",
+      "stage": "SCHEMA_CHECK",
+      "input_rows": 14,
+      "input_cols": 15
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.477394",
+      "event": "stage_complete",
+      "stage": "SCHEMA_CHECK",
+      "output_rows": 14,
+      "output_cols": 15,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.477434",
+      "event": "stage_start",
+      "stage": "TYPE_DETECTION",
+      "input_rows": 14,
+      "input_cols": 15
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.499555",
+      "event": "mutation",
+      "stage": "TYPE_DETECTION",
+      "mutation_type": "numeric_conversion",
+      "details": {
+        "column": "DIRECTOR_facebook_likes",
+        "note": "Textual numerics (including symbols/currency) sanitized and converted"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.501060",
+      "event": "stage_complete",
+      "stage": "TYPE_DETECTION",
+      "output_rows": 14,
+      "output_cols": 15,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.501088",
+      "event": "mutation",
+      "stage": "TYPE_DETECTION",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.501450",
+      "event": "stage_start",
+      "stage": "CLEAN_DATA",
+      "input_rows": 14,
+      "input_cols": 15
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.504886",
+      "event": "mutation",
+      "stage": "CLEAN_DATA",
+      "mutation_type": "text_normalization",
+      "details": {
+        "column": "movie_title",
+        "case": "none",
+        "trimmed": true
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.505261",
+      "event": "stage_complete",
+      "stage": "CLEAN_DATA",
+      "output_rows": 14,
+      "output_cols": 15,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.505279",
+      "event": "mutation",
+      "stage": "CLEAN_DATA",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.505576",
+      "event": "stage_start",
+      "stage": "DUPLICATES",
+      "input_rows": 14,
+      "input_cols": 15
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.510709",
+      "event": "mutation",
+      "stage": "DUPLICATES",
+      "mutation_type": "duplicate_detection",
+      "details": {
+        "count": 1,
+        "note": "Duplicates preserved (deletion disabled)"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.511142",
+      "event": "stage_complete",
+      "stage": "DUPLICATES",
+      "output_rows": 14,
+      "output_cols": 15,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.511159",
+      "event": "mutation",
+      "stage": "DUPLICATES",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.511443",
+      "event": "stage_start",
+      "stage": "MISSING_VALUES",
+      "input_rows": 14,
+      "input_cols": 15
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.516512",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "impute",
+      "details": {
+        "column": "duration",
+        "strategy": "median",
+        "count": 3
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.518319",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "impute",
+      "details": {
+        "column": "DIRECTOR_facebook_likes",
+        "strategy": "median",
+        "count": 2
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.521708",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "impute",
+      "details": {
+        "column": "num_voted_users",
+        "strategy": "median",
+        "count": 1
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.524016",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "impute",
+      "details": {
+        "column": "Cast_Total_facebook_likes",
+        "strategy": "median",
+        "count": 2
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.526346",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "impute",
+      "details": {
+        "column": "facenumber_in_poster",
+        "strategy": "median",
+        "count": 5
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.529073",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "impute",
+      "details": {
+        "column": "ACTOR_2_facebook_likes",
+        "strategy": "median",
+        "count": 1
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.529894",
+      "event": "stage_complete",
+      "stage": "MISSING_VALUES",
+      "output_rows": 14,
+      "output_cols": 15,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.529922",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.530376",
+      "event": "stage_start",
+      "stage": "OUTLIERS",
+      "input_rows": 14,
+      "input_cols": 15
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.538788",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "clip_outliers",
+      "details": {
+        "column": "duration",
+        "count": 3,
+        "method": "iqr"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.543924",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "clip_outliers",
+      "details": {
+        "column": "DIRECTOR_facebook_likes",
+        "count": 1,
+        "method": "iqr"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.551119",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "clip_outliers",
+      "details": {
+        "column": "actor_3_facebook_likes",
+        "count": 1,
+        "method": "iqr"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.562248",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "clip_outliers",
+      "details": {
+        "column": "num_voted_users",
+        "count": 2,
+        "method": "iqr"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.570464",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "clip_outliers",
+      "details": {
+        "column": "facenumber_in_poster",
+        "count": 2,
+        "method": "iqr"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.579621",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "clip_outliers",
+      "details": {
+        "column": "budget",
+        "count": 3,
+        "method": "iqr"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.588556",
+      "event": "stage_complete",
+      "stage": "OUTLIERS",
+      "output_rows": 14,
+      "output_cols": 15,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:15:11.588598",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    }
+  ]
+}

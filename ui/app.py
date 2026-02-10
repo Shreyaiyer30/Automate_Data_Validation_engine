@@ -211,7 +211,7 @@ elif page == "Cleaning":
 
 elif page == "Visualization":
     if st.session_state.df_cleaned is not None:
-        render_visualization_section(st.session_state.df_raw, st.session_state.df_cleaned)
+        render_visualization_section(st.session_state.df_raw, st.session_state.df_cleaned, st.session_state.report)
     else:
         st.warning("Please run the Cleaning Pipeline first.")
 

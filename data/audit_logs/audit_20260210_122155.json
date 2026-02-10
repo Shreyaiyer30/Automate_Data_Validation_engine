@@ -1,0 +1,214 @@
+{
+  "session_id": "20260210_122155",
+  "pipeline_id": null,
+  "created_at": "2026-02-10T12:26:09.718298",
+  "total_entries": 22,
+  "entries": [
+    {
+      "timestamp": "2026-02-10T12:26:09.022857",
+      "event": "stage_start",
+      "stage": "SCHEMA_CHECK",
+      "input_rows": 15028,
+      "input_cols": 6
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.043447",
+      "event": "stage_complete",
+      "stage": "SCHEMA_CHECK",
+      "output_rows": 15028,
+      "output_cols": 6,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.043648",
+      "event": "stage_start",
+      "stage": "TYPE_DETECTION",
+      "input_rows": 15028,
+      "input_cols": 6
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.555977",
+      "event": "stage_complete",
+      "stage": "TYPE_DETECTION",
+      "output_rows": 15028,
+      "output_cols": 6,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.556025",
+      "event": "stage_start",
+      "stage": "CLEAN_DATA",
+      "input_rows": 15028,
+      "input_cols": 6
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.573806",
+      "event": "mutation",
+      "stage": "CLEAN_DATA",
+      "mutation_type": "text_normalization",
+      "details": {
+        "column": "113 Cause Name",
+        "case": "none",
+        "trimmed": true
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.595312",
+      "event": "mutation",
+      "stage": "CLEAN_DATA",
+      "mutation_type": "text_normalization",
+      "details": {
+        "column": "Cause Name",
+        "case": "none",
+        "trimmed": true
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.611386",
+      "event": "mutation",
+      "stage": "CLEAN_DATA",
+      "mutation_type": "text_normalization",
+      "details": {
+        "column": "State",
+        "case": "none",
+        "trimmed": true
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.612646",
+      "event": "stage_complete",
+      "stage": "CLEAN_DATA",
+      "output_rows": 15028,
+      "output_cols": 6,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.612693",
+      "event": "mutation",
+      "stage": "CLEAN_DATA",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.613599",
+      "event": "stage_start",
+      "stage": "DUPLICATES",
+      "input_rows": 15028,
+      "input_cols": 6
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.625297",
+      "event": "stage_complete",
+      "stage": "DUPLICATES",
+      "output_rows": 15028,
+      "output_cols": 6,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.647485",
+      "event": "stage_start",
+      "stage": "MISSING_VALUES",
+      "input_rows": 15028,
+      "input_cols": 6
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.670663",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "impute",
+      "details": {
+        "column": "Deaths",
+        "strategy": "median",
+        "count": 15
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.674186",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "impute",
+      "details": {
+        "column": "Age-adjusted Death Rate",
+        "strategy": "median",
+        "count": 111
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.674887",
+      "event": "stage_complete",
+      "stage": "MISSING_VALUES",
+      "output_rows": 15028,
+      "output_cols": 6,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.674922",
+      "event": "mutation",
+      "stage": "MISSING_VALUES",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.676231",
+      "event": "stage_start",
+      "stage": "OUTLIERS",
+      "input_rows": 15028,
+      "input_cols": 6
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.693385",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "clip_outliers",
+      "details": {
+        "column": "Deaths",
+        "count": 2386,
+        "method": "iqr"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.703744",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "clip_outliers",
+      "details": {
+        "column": "Age-adjusted Death Rate",
+        "count": 2652,
+        "method": "iqr"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.710310",
+      "event": "stage_complete",
+      "stage": "OUTLIERS",
+      "output_rows": 15028,
+      "output_cols": 6,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-10T12:26:09.710659",
+      "event": "mutation",
+      "stage": "OUTLIERS",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    }
+  ]
+}
