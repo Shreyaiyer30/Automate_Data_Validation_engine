@@ -738,7 +738,7 @@ class ExcelLoader(BaseLoader):
     @retry(max_attempts=2)
     def load(
         file_path: Union[str, Path, BinaryIO],
-        sheet_name: Optional[Union[str, int, List]] = None,
+        sheet_name: Optional[Union[str, int, List]] = 0,
         engine: Optional[str] = None,
         **kwargs
     ) -> Tuple[Union[pd.DataFrame, Dict[str, pd.DataFrame]], Dict[str, Any]]:
@@ -1135,7 +1135,7 @@ class EnhancedDataLoader:
         file_format: Union[str, FileFormat] = FileFormat.AUTO,
         encoding: Optional[str] = None,
         delimiter: Optional[str] = None,
-        sheet_name: Optional[Union[str, int, List]] = None,
+        sheet_name: Optional[Union[str, int, List]] = 0,
         **kwargs
     ) -> Tuple[Union[pd.DataFrame, Dict[str, pd.DataFrame]], FileMetadata]:
         """

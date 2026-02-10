@@ -1,0 +1,21 @@
+pipeline:
+  strictness: "medium"
+  auto_clean: true
+
+phone:
+  default_country: "IN"
+  format: "international"
+
+email:
+  validate_mx: false
+  flag_disposable: true
+
+date:
+  output_format: "ISO"
+  fix_two_digit_years: true
+
+scoring:
+  weights:
+    ERROR: 10
+    WARNING: 5
+    INFO: 1

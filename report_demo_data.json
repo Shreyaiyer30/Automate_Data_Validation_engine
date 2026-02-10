@@ -1,0 +1,315 @@
+{
+  "detected_types": {
+    "Name": {
+      "type": "PERSON_NAME",
+      "confidence": 0.6000000000000001
+    },
+    "Phone": {
+      "type": "PHONE_NUMBER",
+      "confidence": 1.0
+    },
+    "Email": {
+      "type": "EMAIL",
+      "confidence": 1.0
+    },
+    "DOB": {
+      "type": "DATE_OF_BIRTH",
+      "confidence": 1.0
+    },
+    "Age": {
+      "type": "AGE",
+      "confidence": 0.6000000000000001
+    },
+    "City": {
+      "type": "LOCATION",
+      "confidence": 0.6000000000000001
+    }
+  },
+  "initial_quality": {
+    "score": {
+      "score": 56.67,
+      "penalty_total": 43.33,
+      "breakdown": [
+        {
+          "rule": "NAME_format",
+          "severity": "WARNING",
+          "rows": 2,
+          "penalty": 6.67
+        },
+        {
+          "rule": "PHONE_format",
+          "severity": "ERROR",
+          "rows": 2,
+          "penalty": 15.0
+        },
+        {
+          "rule": "EMAIL_format",
+          "severity": "ERROR",
+          "rows": 1,
+          "penalty": 8.33
+        },
+        {
+          "rule": "AGE_range",
+          "severity": "ERROR",
+          "rows": 1,
+          "penalty": 8.33
+        },
+        {
+          "rule": "LOCATION_style",
+          "severity": "INFO",
+          "rows": 4,
+          "penalty": 3.33
+        },
+        {
+          "rule": "CROSS_NAME_EMAIL_MISMATCH",
+          "severity": "INFO",
+          "rows": 2,
+          "penalty": 1.67
+        }
+      ]
+    },
+    "issue_count": 6,
+    "issues": [
+      {
+        "column": "Name",
+        "detected_type": "ColumnType.PERSON_NAME",
+        "severity": "WARNING",
+        "rule_id": "NAME_format",
+        "message": "Single word names found (potential missing surname)",
+        "rows_affected": 2,
+        "examples": [
+          "priya",
+          "Mismatched"
+        ],
+        "suggested_fix": "Review manually"
+      },
+      {
+        "column": "Phone",
+        "detected_type": "ColumnType.PHONE_NUMBER",
+        "severity": "ERROR",
+        "rule_id": "PHONE_format",
+        "message": "Invalid phone format (expected 10 digits)",
+        "rows_affected": 2,
+        "examples": [
+          "+91-9988776655",
+          "12345"
+        ],
+        "suggested_fix": "Standardize format"
+      },
+      {
+        "column": "Email",
+        "detected_type": "ColumnType.EMAIL",
+        "severity": "ERROR",
+        "rule_id": "EMAIL_format",
+        "message": "Invalid email format",
+        "rows_affected": 1,
+        "examples": [
+          "priya.test"
+        ],
+        "suggested_fix": "Check for typos"
+      },
+      {
+        "column": "Age",
+        "detected_type": "ColumnType.AGE",
+        "severity": "ERROR",
+        "rule_id": "AGE_range",
+        "message": "Age out of valid range (0-120)",
+        "rows_affected": 1,
+        "examples": [
+          150
+        ],
+        "suggested_fix": "Check data source"
+      },
+      {
+        "column": "City",
+        "detected_type": "ColumnType.LOCATION",
+        "severity": "INFO",
+        "rule_id": "LOCATION_style",
+        "message": "Inconsistent casing detected (mix of Title/Lower/Upper)",
+        "rows_affected": 4,
+        "examples": [
+          "delhi",
+          "MUMBAI",
+          "  pune "
+        ],
+        "suggested_fix": "Standardize to Title Case"
+      },
+      {
+        "column": "Name <> Email",
+        "detected_type": "ColumnType.UNKNOWN",
+        "severity": "INFO",
+        "rule_id": "CROSS_NAME_EMAIL_MISMATCH",
+        "message": "Email does not appear to match Name (2 potential)",
+        "rows_affected": 2,
+        "examples": [
+          "Mismatched <-> mismatch@test.com",
+          "John Doe <-> jane.smith@other.com"
+        ],
+        "suggested_fix": "Manual verification required"
+      }
+    ]
+  },
+  "cleaning_logs": [
+    {
+      "column": "Name",
+      "operation": "Standardize Name (Title Case, Strip)",
+      "rows_changed": "2",
+      "examples": []
+    },
+    {
+      "column": "Phone",
+      "operation": "Format Phone (Digits, Region: IN)",
+      "rows_changed": "5",
+      "examples": []
+    },
+    {
+      "column": "DOB",
+      "operation": "Standardize Date (ISO)",
+      "rows_changed": "2",
+      "examples": []
+    },
+    {
+      "column": "City",
+      "operation": "Title Case Location",
+      "rows_changed": "4",
+      "examples": []
+    }
+  ],
+  "final_quality": {
+    "score": {
+      "score": 50.0,
+      "penalty_total": 50.0,
+      "breakdown": [
+        {
+          "rule": "NAME_format",
+          "severity": "WARNING",
+          "rows": 2,
+          "penalty": 6.67
+        },
+        {
+          "rule": "PHONE_format",
+          "severity": "ERROR",
+          "rows": 6,
+          "penalty": 15.0
+        },
+        {
+          "rule": "EMAIL_format",
+          "severity": "ERROR",
+          "rows": 1,
+          "penalty": 8.33
+        },
+        {
+          "rule": "AGE_range",
+          "severity": "ERROR",
+          "rows": 1,
+          "penalty": 8.33
+        },
+        {
+          "rule": "CROSS_DOB_AGE_MISMATCH",
+          "severity": "WARNING",
+          "rows": 3,
+          "penalty": 10.0
+        },
+        {
+          "rule": "CROSS_NAME_EMAIL_MISMATCH",
+          "severity": "INFO",
+          "rows": 2,
+          "penalty": 1.67
+        }
+      ]
+    },
+    "issue_count": 6,
+    "issues": [
+      {
+        "column": "Name",
+        "detected_type": "ColumnType.PERSON_NAME",
+        "severity": "WARNING",
+        "rule_id": "NAME_format",
+        "message": "Single word names found (potential missing surname)",
+        "rows_affected": 2,
+        "examples": [
+          "Priya",
+          "Mismatched"
+        ],
+        "suggested_fix": "Review manually"
+      },
+      {
+        "column": "Phone",
+        "detected_type": "ColumnType.PHONE_NUMBER",
+        "severity": "ERROR",
+        "rule_id": "PHONE_format",
+        "message": "Invalid phone format (expected 10 digits)",
+        "rows_affected": 6,
+        "examples": [
+          "+91-9876543210",
+          "919988776655",
+          "12345"
+        ],
+        "suggested_fix": "Standardize format"
+      },
+      {
+        "column": "Email",
+        "detected_type": "ColumnType.EMAIL",
+        "severity": "ERROR",
+        "rule_id": "EMAIL_format",
+        "message": "Invalid email format",
+        "rows_affected": 1,
+        "examples": [
+          "priya.test"
+        ],
+        "suggested_fix": "Check for typos"
+      },
+      {
+        "column": "Age",
+        "detected_type": "ColumnType.AGE",
+        "severity": "ERROR",
+        "rule_id": "AGE_range",
+        "message": "Age out of valid range (0-120)",
+        "rows_affected": 1,
+        "examples": [
+          150
+        ],
+        "suggested_fix": "Check data source"
+      },
+      {
+        "column": "DOB <> Age",
+        "detected_type": "ColumnType.UNKNOWN",
+        "severity": "WARNING",
+        "rule_id": "CROSS_DOB_AGE_MISMATCH",
+        "message": "Age does not match DOB (>3 inconsistencies)",
+        "rows_affected": 3,
+        "examples": [
+          {
+            "DOB": "1995-12-12",
+            "Age": "150",
+            "Expected": "30.2"
+          },
+          {
+            "DOB": "2000-01-01",
+            "Age": "24",
+            "Expected": "26.1"
+          },
+          {
+            "DOB": "1980-01-01",
+            "Age": "20",
+            "Expected": "46.1"
+          }
+        ],
+        "suggested_fix": "Re-derive Age from DOB"
+      },
+      {
+        "column": "Name <> Email",
+        "detected_type": "ColumnType.UNKNOWN",
+        "severity": "INFO",
+        "rule_id": "CROSS_NAME_EMAIL_MISMATCH",
+        "message": "Email does not appear to match Name (2 potential)",
+        "rows_affected": 2,
+        "examples": [
+          "Mismatched <-> mismatch@test.com",
+          "John Doe <-> jane.smith@other.com"
+        ],
+        "suggested_fix": "Manual verification required"
+      }
+    ]
+  }
+}

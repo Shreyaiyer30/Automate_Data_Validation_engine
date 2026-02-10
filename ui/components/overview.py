@@ -62,22 +62,22 @@ def render_overview_section(df: pd.DataFrame):
     st.markdown("---")
     
     # 2. Missing Value Heatmap
-    st.markdown("### 🗺️ Missing Value Heatmap")
-    if df.isna().sum().sum() > 0:
-        # Optimization for very large datasets
-        plot_df = df
-        if len(df) > 1000:
-            plot_df = df.sample(1000)
-            st.info("Showing heatmap for a sample of 1,000 rows.")
+    # st.markdown("### 🗺️ Missing Value Heatmap")
+    # if df.isna().sum().sum() > 0:
+    #     # Optimization for very large datasets
+    #     plot_df = df
+    #     if len(df) > 1000:
+    #         plot_df = df.sample(1000)
+    #         st.info("Showing heatmap for a sample of 1,000 rows.")
             
-        fig = px.imshow(plot_df.isna().astype(int), 
-                       labels=dict(x="Columns", y="Rows", color="Missing"),
-                       color_continuous_scale="Viridis",
-                       aspect="auto")
-        fig.update_layout(plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', font_color='white')
-        st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.success("No missing values detected in the entire dataset! 🎉")
+    #     fig = px.imshow(plot_df.isna().astype(int), 
+    #                    labels=dict(x="Columns", y="Rows", color="Missing"),
+    #                    color_continuous_scale="Viridis",
+    #                    aspect="auto")
+    #     fig.update_layout(plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', font_color='white')
+    #     st.plotly_chart(fig, use_container_width=True)
+    # else:
+    #     st.success("No missing values detected in the entire dataset! 🎉")
     
     # 3. Column-wise profiling cards (Required Analytics)
     st.markdown("### 📋 Column Profiles")

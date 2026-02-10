@@ -119,9 +119,23 @@ st.markdown("""
 
 # --- State Initialization ---
 from src.data_processor import DataProcessor
-# Force re-init if the object is outdated (handles Streamlit session state persistence across code changes)
-if 'processor' not in st.session_state or not hasattr(st.session_state.processor, 'simulate_impact') or not hasattr(st.session_state.processor, 'audit_export'): 
+# --- ARCHITECTURAL CONTRACT: STATE INTEGRITY ---
+# Re-instantiate processor on code change or version mismatch (Streamlit live-reload safety)
+current_version = getattr(DataProcessor, 'VERSION', '1.0.0')
+if ('processor' not in st.session_state or 
+    getattr(st.session_state.processor, 'VERSION', '1.0.0') != current_version):
     st.session_state.processor = DataProcessor()
+
+# Enforce clean DataFrame in session state (Recovery from stale multi-sheet loads)
+if 'df_raw' in st.session_state and isinstance(st.session_state.df_raw, dict):
+    # Auto-resolve stale dict to primary DataFrame
+    if st.session_state.df_raw:
+        # Sort keys to be deterministic (optional)
+        first_key = sorted(st.session_state.df_raw.keys())[0]
+        st.session_state.df_raw = st.session_state.df_raw[first_key]
+    else:
+        st.session_state.df_raw = pd.DataFrame()
+
 if 'df_raw' not in st.session_state: st.session_state.df_raw = None
 if 'df_cleaned' not in st.session_state: st.session_state.df_cleaned = None
 if 'report' not in st.session_state: st.session_state.report = None

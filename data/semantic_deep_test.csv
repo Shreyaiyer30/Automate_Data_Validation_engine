@@ -1,0 +1,7 @@
+Name,DOB,Age,Phone,Email,Location,Gender
+Priya,35845,35845,9876543210,priya@example.com,Bangalore,Female
+Rahul,1990/12/31,34,,rahul@domain,Mumbai,Male
+Anjali,2000-01-01,24,12345,anjali@invalid,Delhi,Female
+Suresh,not_a_date,150,9000000000,,Chennai,Male
+Deepa,44211,44211,9988776655,deepa@corp.co,Pune,
+,38000,,1020304050,test@test.com,,Female

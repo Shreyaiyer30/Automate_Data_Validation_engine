@@ -64,6 +64,21 @@ def render_export_section(df: pd.DataFrame, report: dict):
     st.markdown("### 📥 Download Results")
     c1, c2, c3 = st.columns(3)
     
+    # helper to clean for export (Robust NaN handling)
+    def prepare_export_df(df_in):
+        if df_in.empty: return df_in
+        out = df_in.copy()
+        import numpy as np
+        # Replace string placeholders with actual NaN
+        cols = out.select_dtypes(include=['object']).columns
+        if len(cols) > 0:
+            out[cols] = out[cols].replace(
+                to_replace=r'^(?i)(nan|unknown|null|none|n/a|\s*)$', 
+                value=np.nan, regex=True
+            )
+        return out
+
+    df_export = prepare_export_df(df)
 
     # Extract original basename for naming contract
     metadata = st.session_state.get('metadata', {})
@@ -75,7 +90,7 @@ def render_export_section(df: pd.DataFrame, report: dict):
         if hasattr(st.session_state.processor, 'audit_export'):
             st.session_state.processor.audit_export("CSV", list(df.columns))
         st.download_button("📥 DOWNLOAD CSV", 
-                          df.to_csv(index=False).encode('utf-8'),
+                          df_export.to_csv(index=False).encode('utf-8'),
                           f"{base_name}_cleaned_data.csv", "text/csv", use_container_width=True)
                           
     with c2:
@@ -88,11 +103,11 @@ def render_export_section(df: pd.DataFrame, report: dict):
             if hasattr(st.session_state.processor, 'audit_export'):
                 st.session_state.processor.audit_export("EXCEL", list(df.columns))
             with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                df.to_excel(writer, index=False, sheet_name='Cleaned Data')
+                df_export.to_excel(writer, index=False, sheet_name='Cleaned Data')
                 
                 # Access sheet for rich formatting
                 worksheet = writer.sheets['Cleaned Data']
-                row_count, col_count = df.shape
+                row_count, col_count = df_export.shape
                 
                 # 1. Convert to Excel Table (Filters + Striping)
                 # Note: displayName must be alphanumeric
@@ -107,14 +122,14 @@ def render_export_section(df: pd.DataFrame, report: dict):
                 worksheet.freeze_panes = 'A2'
                 
                 # 3. Dynamic Column Widths (Auto-fit)
-                for i, column in enumerate(df.columns):
-                    column_len = max(df[column].astype(str).map(len).max(), len(column))
+                for i, column in enumerate(df_export.columns):
+                    column_len = max(df_export[column].astype(str).map(len).max(), len(column))
                     worksheet.column_dimensions[get_column_letter(i + 1)].width = min(column_len + 2, 50)
                     
         except ImportError:
             # Fallback if openpyxl features fail / aren't fully available
             with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                df.to_excel(writer, index=False)
+                df_export.to_excel(writer, index=False)
                 
         excel_data = output.getvalue()
         st.download_button("📥 DOWNLOAD EXCEL",

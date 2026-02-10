@@ -31,6 +31,21 @@ class LifecycleManager:
         from src.engine.stages.base_stage import StageState
         
         for stage in self.stages:
+            # Check if stage is enabled in config
+            # stages config can be a List or a Dict
+            stage_config = config.get("stages", {})
+            
+            # If config is empty (test mode) and we didn't explicitly include it, skip elective stages
+            # For backward compatibility, if 'stages' is missing, run all.
+            if isinstance(stage_config, list):
+                if stage.name not in stage_config:
+                    continue
+            elif isinstance(stage_config, dict) and stage_config:
+                if stage.name in stage_config and not stage_config[stage.name].get("enabled", True):
+                    continue
+                if stage.name not in stage_config:
+                    continue
+            
             try:
                 # Stages now return (df, state)
                 df, state = stage.run(df, config)

@@ -10,10 +10,12 @@ class DataProcessor:
     High-level facade for data processing.
     Integrates the AtomicEngine with Dynamic Rule Generation and Cleaning.
     """
+    VERSION = "1.1.0" # Architectural Contract Version
     
     def __init__(self, settings: Dict = None):
-        self.engine = AtomicEngine() # Fallback to standard engine if needed
-        self.rule_generator = DynamicRuleGenerator(settings)
+        self.settings = settings or {}
+        self.engine = AtomicEngine(config=self.settings) 
+        self.rule_generator = DynamicRuleGenerator(self.settings)
         self.cleaner = DynamicDataCleaner(self.rule_generator, logger=self.engine.logger)
         self.logger = logging.getLogger(__name__)
 
@@ -21,6 +23,10 @@ class DataProcessor:
         """Generate a deep analysis and detect duplicate columns for the dataset."""
         if df is None:
             return {"suggested_rules": {}, "column_analysis": {}, "quality_score": 0, "duplicates": {}}
+            
+        # --- ARCHITECTURAL CONTRACT: DATA TYPE ENFORCEMENT ---
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError(f"DataProcessor expects a pandas.DataFrame, but received {type(df)}")
             
         analysis = self.rule_generator.generate_cleaning_rules(df)
         _, merged_info = self._resolve_duplicate_columns(df)
@@ -70,6 +76,10 @@ class DataProcessor:
         """
         if df is None:
             return None, {}
+
+        # --- ARCHITECTURAL CONTRACT: DATA TYPE ENFORCEMENT ---
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError(f"DataProcessor expects a pandas.DataFrame, but received {type(df)}")
 
         # 0. Structural Resolution (Duplicate Column Merging)
         df, merged_info = self._resolve_duplicate_columns(df)
