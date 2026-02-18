@@ -1,0 +1,528 @@
+{
+  "session_id": "20260218_005254",
+  "pipeline_id": null,
+  "created_at": "2026-02-18T00:52:55.010584",
+  "total_entries": 53,
+  "entries": [
+    {
+      "timestamp": "2026-02-18T00:52:54.877329",
+      "event": "stage_start",
+      "stage": "missing_values",
+      "input_rows": 14,
+      "input_cols": 16
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.887748",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 8,
+        "severity": "WARN",
+        "summary": "missing_values: 7 warnings, 1 info"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.890502",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "null_standardization",
+      "details": {
+        "column": "DIRECTOR_facebook_likes",
+        "indicator": "nan",
+        "count": 2
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.894923",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "duration",
+        "strategy": "median",
+        "count": 3
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.897100",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "DIRECTOR_facebook_likes",
+        "strategy": "mode",
+        "count": 2
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.899614",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "num_voted_users",
+        "strategy": "median",
+        "count": 1
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.901227",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "Cast_Total_facebook_likes",
+        "strategy": "median",
+        "count": 2
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.906371",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "facenumber_in_poster",
+        "strategy": "median",
+        "count": 5
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.909155",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "ACTOR_2_facebook_likes",
+        "strategy": "median",
+        "count": 1
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.910699",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "title_year.1",
+        "strategy": "median",
+        "count": 7
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.910768",
+      "event": "stage_complete",
+      "stage": "missing_values",
+      "output_rows": 14,
+      "output_cols": 16,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.910779",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.910799",
+      "event": "stage_start",
+      "stage": "duplicates",
+      "input_rows": 14,
+      "input_cols": 16
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.920022",
+      "event": "stage_complete",
+      "stage": "duplicates",
+      "output_rows": 14,
+      "output_cols": 16,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.920130",
+      "event": "stage_start",
+      "stage": "detect_types",
+      "input_rows": 14,
+      "input_cols": 16
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.934543",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 1,
+        "severity": "INFO",
+        "summary": "detect_types: 1 info"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.936669",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "force_numeric",
+      "details": {
+        "column": "gross",
+        "mode": "ignore"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.937347",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "force_numeric",
+      "details": {
+        "column": "budget",
+        "mode": "ignore"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.937748",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "force_numeric",
+      "details": {
+        "column": "title_year",
+        "mode": "ignore"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.938521",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "num_critic_for_reviews"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.939573",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "duration"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.940480",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "actor_3_facebook_likes"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.941118",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "ACTOR_1_facebook_likes"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.941721",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "gross"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.942771",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "num_voted_users"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.944181",
+      "event": "error",
+      "stage": "detect_types",
+      "error_type": "INT_CONVERSION_FAILED",
+      "message": "Col: Cast_Total_facebook_likes, Error: cannot safely cast non-equivalent float64 to int64"
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.946396",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "facenumber_in_poster"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.947203",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "num_user_for_reviews"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.948009",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "budget"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.948689",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "title_year"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.955115",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "ACTOR_2_facebook_likes"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.959413",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "enforce_int",
+      "details": {
+        "column": "title_year.1"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.959516",
+      "event": "stage_complete",
+      "stage": "detect_types",
+      "output_rows": 14,
+      "output_cols": 16,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.959535",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.959608",
+      "event": "stage_start",
+      "stage": "skewness",
+      "input_rows": 14,
+      "input_cols": 16
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.987276",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 8,
+        "severity": "INFO",
+        "summary": "skewness: 8 info"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.990116",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "skewness_transform",
+      "details": {
+        "column": "duration",
+        "method": "Log transform (log1p)",
+        "before": -0.5035,
+        "after": -1.0628
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.991641",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "skewness_transform",
+      "details": {
+        "column": "actor_3_facebook_likes",
+        "method": "Log transform (log1p)",
+        "before": 1.3255,
+        "after": 0.3794
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.993121",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "skewness_transform",
+      "details": {
+        "column": "gross",
+        "method": "Log transform (log1p)",
+        "before": 0.9625,
+        "after": -0.8131
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.994308",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "skewness_transform",
+      "details": {
+        "column": "num_voted_users",
+        "method": "Log transform (log1p)",
+        "before": 1.8849,
+        "after": 0.9212
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.995979",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "skewness_transform",
+      "details": {
+        "column": "facenumber_in_poster",
+        "method": "Log transform (log1p)",
+        "before": 0.9252,
+        "after": 0.323
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.998611",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "skewness_transform",
+      "details": {
+        "column": "num_user_for_reviews",
+        "method": "Log transform (log1p)",
+        "before": 0.5446,
+        "after": -0.4715
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:54.999755",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "skewness_transform",
+      "details": {
+        "column": "ACTOR_2_facebook_likes",
+        "method": "Log transform (log1p)",
+        "before": 0.821,
+        "after": -0.3788
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.000819",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "skewness_transform",
+      "details": {
+        "column": "title_year.1",
+        "method": "Log transform (log1p)",
+        "before": 1.4086,
+        "after": 1.4078
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.000871",
+      "event": "stage_complete",
+      "stage": "skewness",
+      "output_rows": 14,
+      "output_cols": 16,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.000882",
+      "event": "mutation",
+      "stage": "skewness",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.000951",
+      "event": "stage_start",
+      "stage": "clean_data",
+      "input_rows": 14,
+      "input_cols": 16
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.006826",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "text_normalization",
+      "details": {
+        "column": "movie_title",
+        "case": "none"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.009426",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "text_normalization",
+      "details": {
+        "column": "DIRECTOR_facebook_likes",
+        "case": "none"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.009511",
+      "event": "stage_complete",
+      "stage": "clean_data",
+      "output_rows": 14,
+      "output_cols": 16,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.009526",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.009617",
+      "event": "stage_start",
+      "stage": "schema_check",
+      "input_rows": 14,
+      "input_cols": 16
+    },
+    {
+      "timestamp": "2026-02-18T00:52:55.010499",
+      "event": "stage_complete",
+      "stage": "schema_check",
+      "output_rows": 14,
+      "output_cols": 16,
+      "metadata": {
+        "state": "PASS"
+      }
+    }
+  ]
+}

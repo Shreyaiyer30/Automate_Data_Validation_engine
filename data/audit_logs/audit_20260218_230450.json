@@ -1,0 +1,146 @@
+{
+  "session_id": "20260218_230450",
+  "pipeline_id": null,
+  "created_at": "2026-02-18T23:04:50.424244",
+  "total_entries": 14,
+  "entries": [
+    {
+      "timestamp": "2026-02-18T23:04:50.351687",
+      "event": "stage_start",
+      "stage": "missing_values",
+      "input_rows": 25,
+      "input_cols": 7
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.377440",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 5,
+        "severity": "WARN",
+        "summary": "missing_values: 4 warnings, 1 info"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.380688",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "null_standardization",
+      "details": {
+        "column": "Gender",
+        "indicator": "nan",
+        "count": 1
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.391771",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "Phone Number",
+        "strategy": "median",
+        "count": 6
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.395349",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "DOB",
+        "strategy": "median",
+        "count": 4
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.398991",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "Age",
+        "strategy": "median",
+        "count": 4
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.404053",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "Gender",
+        "strategy": "mode",
+        "count": 1
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.404744",
+      "event": "stage_complete",
+      "stage": "missing_values",
+      "output_rows": 25,
+      "output_cols": 7,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.404781",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.404812",
+      "event": "stage_start",
+      "stage": "duplicates",
+      "input_rows": 25,
+      "input_cols": 7
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.415784",
+      "event": "mutation",
+      "stage": "duplicates",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 2,
+        "severity": "WARN",
+        "summary": "duplicates: 2 warnings"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.417722",
+      "event": "mutation",
+      "stage": "duplicates",
+      "mutation_type": "rows_flagged",
+      "details": {
+        "count": 5,
+        "note": "Duplicates preserved (deletion disabled)"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.422472",
+      "event": "mutation",
+      "stage": "duplicates",
+      "mutation_type": "drop_duplicate_columns",
+      "details": {
+        "dropped": [
+          "Age"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-18T23:04:50.422649",
+      "event": "error",
+      "stage": "duplicates",
+      "error_type": "STAGE_FAILURE",
+      "message": "Unexpected failure: AuditLogger.log_error() got an unexpected keyword argument 'critical'"
+    }
+  ]
+}

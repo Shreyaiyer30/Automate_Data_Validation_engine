@@ -1,0 +1,411 @@
+{
+  "session_id": "20260218_173316",
+  "pipeline_id": null,
+  "created_at": "2026-02-18T17:33:16.948187",
+  "total_entries": 42,
+  "entries": [
+    {
+      "timestamp": "2026-02-18T17:33:16.827488",
+      "event": "stage_start",
+      "stage": "missing_values",
+      "input_rows": 6,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.856880",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 6,
+        "severity": "WARN",
+        "summary": "missing_values: 4 warnings, 2 info"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.860814",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "null_standardization",
+      "details": {
+        "column": "Year",
+        "indicator": "None",
+        "count": 1
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.862518",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "null_standardization",
+      "details": {
+        "column": "Empty_Col",
+        "indicator": "None",
+        "count": 6
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.868526",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "row_deletion",
+      "details": {
+        "count": 1,
+        "reason": "missingness > 50.0%"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.875981",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "impute",
+      "details": {
+        "column": "Empty_Col",
+        "strategy": "mode",
+        "count": 5
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.876041",
+      "event": "stage_complete",
+      "stage": "missing_values",
+      "output_rows": 5,
+      "output_cols": 4,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.876056",
+      "event": "mutation",
+      "stage": "missing_values",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.876081",
+      "event": "stage_start",
+      "stage": "duplicates",
+      "input_rows": 5,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.884142",
+      "event": "mutation",
+      "stage": "duplicates",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 1,
+        "severity": "WARN",
+        "summary": "duplicates: 1 warnings"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.885821",
+      "event": "mutation",
+      "stage": "duplicates",
+      "mutation_type": "drop_duplicates",
+      "details": {
+        "count": 1,
+        "subset": "full_row"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.885875",
+      "event": "stage_complete",
+      "stage": "duplicates",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.885887",
+      "event": "mutation",
+      "stage": "duplicates",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.885918",
+      "event": "stage_start",
+      "stage": "detect_types",
+      "input_rows": 4,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.914695",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 2,
+        "severity": "INFO",
+        "summary": "detect_types: 2 info"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.915850",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "force_numeric",
+      "details": {
+        "column": "Year",
+        "mode": "ignore",
+        "coerced_to_nan": 0
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.915897",
+      "event": "stage_complete",
+      "stage": "detect_types",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.915906",
+      "event": "mutation",
+      "stage": "detect_types",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.915931",
+      "event": "stage_start",
+      "stage": "outliers",
+      "input_rows": 4,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.926389",
+      "event": "stage_complete",
+      "stage": "outliers",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.926432",
+      "event": "stage_start",
+      "stage": "skewness",
+      "input_rows": 4,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.927495",
+      "event": "stage_complete",
+      "stage": "skewness",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.927550",
+      "event": "stage_start",
+      "stage": "datetime",
+      "input_rows": 4,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.927666",
+      "event": "stage_complete",
+      "stage": "datetime",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.927697",
+      "event": "stage_start",
+      "stage": "clean_data",
+      "input_rows": 4,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.930468",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "detection_complete",
+      "details": {
+        "issues_found": 1,
+        "severity": "INFO",
+        "summary": "clean_data: 1 info"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.931933",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "whitespace_normalization",
+      "details": {
+        "column": "Movie_Title",
+        "trim": true,
+        "collapse": true
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.939129",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "strict_text_cleanup",
+      "details": {
+        "column": "Movie_Title",
+        "rules": [
+          "encoding_artifacts",
+          "non_printable"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.939410",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "case_normalization",
+      "details": {
+        "column": "Movie_Title",
+        "mode": "Title Case"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.940354",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "whitespace_normalization",
+      "details": {
+        "column": "Empty_Col",
+        "trim": true,
+        "collapse": true
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.943010",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "strict_text_cleanup",
+      "details": {
+        "column": "Empty_Col",
+        "rules": [
+          "encoding_artifacts",
+          "non_printable"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.943289",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "case_normalization",
+      "details": {
+        "column": "Empty_Col",
+        "mode": "Title Case"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.943327",
+      "event": "stage_complete",
+      "stage": "clean_data",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.943338",
+      "event": "mutation",
+      "stage": "clean_data",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.943366",
+      "event": "stage_start",
+      "stage": "validation",
+      "input_rows": 4,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.944588",
+      "event": "stage_complete",
+      "stage": "validation",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.944641",
+      "event": "stage_start",
+      "stage": "column_range",
+      "input_rows": 4,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.944768",
+      "event": "stage_complete",
+      "stage": "column_range",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.944792",
+      "event": "stage_start",
+      "stage": "schema_check",
+      "input_rows": 4,
+      "input_cols": 4
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.945261",
+      "event": "mutation",
+      "stage": "schema_check",
+      "mutation_type": "header_standardization",
+      "details": {
+        "changes": {
+          "Movie_Title": "Movie Title",
+          "Empty_Col": "Empty Col"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.948112",
+      "event": "stage_complete",
+      "stage": "schema_check",
+      "output_rows": 4,
+      "output_cols": 4,
+      "metadata": {
+        "state": "WARN"
+      }
+    },
+    {
+      "timestamp": "2026-02-18T17:33:16.948136",
+      "event": "mutation",
+      "stage": "schema_check",
+      "mutation_type": "Warning issued during stage execution",
+      "details": {
+        "status": "WARN"
+      }
+    }
+  ]
+}

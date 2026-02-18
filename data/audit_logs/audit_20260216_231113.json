@@ -1,0 +1,53 @@
+{
+  "session_id": "20260216_231113",
+  "pipeline_id": null,
+  "created_at": "2026-02-16T23:14:33.383147",
+  "total_entries": 5,
+  "entries": [
+    {
+      "timestamp": "2026-02-16T23:14:32.858240",
+      "event": "stage_start",
+      "stage": "SCHEMA_CHECK",
+      "input_rows": 25,
+      "input_cols": 7
+    },
+    {
+      "timestamp": "2026-02-16T23:14:32.865614",
+      "event": "stage_complete",
+      "stage": "SCHEMA_CHECK",
+      "output_rows": 25,
+      "output_cols": 7,
+      "metadata": {
+        "state": "PASS"
+      }
+    },
+    {
+      "timestamp": "2026-02-16T23:14:32.865751",
+      "event": "stage_start",
+      "stage": "TYPE_DETECTION",
+      "input_rows": 25,
+      "input_cols": 7
+    },
+    {
+      "timestamp": "2026-02-16T23:14:32.980379",
+      "event": "mutation",
+      "stage": "TYPE_DETECTION",
+      "mutation_type": "categorical_conversion",
+      "details": {
+        "column": "Gender",
+        "original_type": "object",
+        "new_type": "category",
+        "unique_count": 2,
+        "unique_ratio": 0.08,
+        "note": "Converted to categorical for memory efficiency"
+      }
+    },
+    {
+      "timestamp": "2026-02-16T23:14:33.366797",
+      "event": "error",
+      "stage": "TYPE_DETECTION",
+      "error_type": "STAGE_FAILURE",
+      "message": "Stage failed unexpectedly: AuditLogger.log_error() got an unexpected keyword argument 'critical'"
+    }
+  ]
+}
